@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MoodMeter from "./components/MoodMeter";
+import Profile from "./components/Profile";
 
 export default function Home(
   {
@@ -16,7 +17,7 @@ export default function Home(
     return (
       <main>
         <p>Connected!</p>
-        access token code: {searchParams.code}
+        <Profile />
 
         <MoodMeter />
       </main>
