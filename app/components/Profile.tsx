@@ -1,9 +1,14 @@
 "use client"
 
-export default function Profile() {
+export default function Profile({
+  token
+}: {
+  token: string
+}) {
   return (
     <div>
-      Profile image and name
+      <p>Profile image and name</p>
+      {token}
     </div>
   )
 }

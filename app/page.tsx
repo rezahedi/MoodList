@@ -17,7 +17,7 @@ export default function Home(
     return (
       <main>
         <p>Connected!</p>
-        <Profile />
+        <Profile token={searchParams.code} />
 
         <MoodMeter />
       </main>
