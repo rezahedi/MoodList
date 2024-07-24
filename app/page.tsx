@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MoodMeter from "./components/MoodMeter";
 
 export default function Home(
   {
@@ -16,6 +17,8 @@ export default function Home(
       <main>
         <p>Connected!</p>
         access token code: {searchParams.code}
+
+        <MoodMeter />
       </main>
     );
   }
