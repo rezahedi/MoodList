@@ -1,5 +1,9 @@
 
 export default function MoodMeter() {
+
+  // TODO: Use below resource for moody playlist
+  // https://developer.spotify.com/documentation/web-api/reference/get-audio-features
+
   return (
     <div className='flex flex-col gap-4 items-center'>
       Level of Energy:
