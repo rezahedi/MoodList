@@ -12,23 +12,24 @@ export default async function Home(
   }
 ) {
   const scope = 'user-read-private user-read-email';
+  let accessToken = "";
 
   if(searchParams.code) {
-    console.log( 'searchParams.code:', searchParams.code );
-    
     // Get access token server-side
     await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic OTU5Yjg2ZGE5YjgzNDJjYTg5MDkzYTFjYzQ3Mjc3ODU6NTFhMzhkMTdjMWMyNDdlYmJjNWNjYTJhZjdiNGU3OGU='
+        'Authorization': 'Basic ' + Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64')
       }, 
       body: 
         'grant_type=authorization_code' +
         '&code=' + searchParams.code +
         '&redirect_uri=' + process.env.NEXT_PUBLIC_BASE_URL
     }).then(async (res) => {
-      console.log( 'res:', await res.json() );
+      const json = await res.json();
+      console.log( 'res:', json );
+      accessToken = json.access_token;
     }).catch(err => {
       console.log( 'err:', err );
     });
@@ -37,7 +38,7 @@ export default async function Home(
     return (
       <main>
         <p>Connected!</p>
-        <Profile token={searchParams.code} />
+        <Profile token={accessToken} />
 
         <MoodMeter />
       </main>
