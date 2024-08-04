@@ -20,16 +20,10 @@ export default function Profile({
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
  
-  // TODO: Fetch profile details using Spotify API call locally
-  
-  // Spotify API endpoint for profile
-  const url = "https://api.spotify.com/v1/me"
-
-
   useEffect(() => {
     setLoading(true)
 
-    fetch(url, {
+    fetch("https://api.spotify.com/v1/me", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
