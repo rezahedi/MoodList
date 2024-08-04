@@ -19,6 +19,7 @@ export default function Profile({
 
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string>('')
  
   useEffect(() => {
     setLoading(true)
@@ -33,6 +34,11 @@ export default function Profile({
       const json = await res.json()
       setLoading(false)
 
+      if ( res.status!==200 )
+        return setError("Request or access error!")
+      if ( !json.display_name )
+        return setError("Something didn't work!!")
+
       setProfile({
         name: json.display_name,
         href: json.href,
@@ -40,13 +46,17 @@ export default function Profile({
         image: json.images[1].url,
         followers: json.followers.total,
       });
+    }).catch(err => {
+      setLoading(false)
+      setError("Network error!")
     })
   }, [token])
 
   return (
     <div>
       {loading && <p>Loading...</p>}
-      {!loading && profile &&
+      {error && <p className='text-red-600'>{error}</p>}
+      {!error && !loading && profile &&
         <>
           <p>{profile.name}</p>
           <Image src={profile.image} alt={profile.name} width={100} height={100} />
