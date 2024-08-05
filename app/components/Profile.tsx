@@ -52,9 +52,7 @@ export default function Profile({
         followers: json.followers.total,
       });
     }).catch(err => {
-      setLoading(false)
       router.push('/')
-      setError("Network error!")
     })
   }, [token])
 
