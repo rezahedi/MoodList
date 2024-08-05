@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import PlayList, { Track } from './PlayList'
 
 // Got available genre seeds from here:
 // https://developer.spotify.com/documentation/web-api/reference/get-recommendation-genres
@@ -13,7 +14,7 @@ export default function MoodMeter({
 }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('')
-  const [playList, setPlayList] = useState();
+  const [playList, setPlayList] = useState<Track[]>([]);
   const [energy, setEnergy] = useState<number>(0.5)
   const [valence, setValence] = useState<number>(0.5)
 
@@ -43,6 +44,25 @@ export default function MoodMeter({
 
       console.log('recommendation:', json)
 
+      let tracks : Track[] = []
+      json.tracks.map(track => {
+        tracks.push({
+          id: track.id,
+          url: track.external_urls.spotify,
+          name: track.name,
+          artists: [
+
+          ],
+          album: {
+            name: track.album.name,
+            url: track.album.external_urls.spotify,
+            image: track.album.images[0].url
+          }
+        })
+      });
+
+      setPlayList(tracks)
+
       // if ( !json.display_name )
       //   return setError("Something didn't work!!")
 
@@ -60,8 +80,8 @@ export default function MoodMeter({
   }
 
   useEffect(() => {
-    console.log('energy:', energy, 'valence:', valence);
-  }, [energy, valence])
+    console.log('playlist:', playList);
+  }, [playList])
 
   return (
     <div className='flex flex-col gap-4 items-center'>
@@ -79,6 +99,7 @@ export default function MoodMeter({
       />
       <button className='rounded-md bg-orange-700 px-4 py-2' onClick={generatePlayList}>Generate</button>
       {error && <p className='text-red-600'>{error}</p>}
+      {playList && <PlayList tracks={playList} />}
     </div>
   )
 }
