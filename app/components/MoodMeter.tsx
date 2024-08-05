@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import PlayList, { Track } from './PlayList'
+import { useRouter } from "next/navigation"
 
 // Got available genre seeds from here:
 // https://developer.spotify.com/documentation/web-api/reference/get-recommendation-genres
@@ -20,6 +21,7 @@ export default function MoodMeter({
   const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'iranian', 'indian', 'pop'])
   const genresMaxLimit = 5;
   const genresMinLimit = 1;
+  const router = useRouter()
 
   const generatePlayList = () => {
     setLoading(true)
@@ -28,6 +30,7 @@ export default function MoodMeter({
     // https://developer.spotify.com/documentation/web-api/reference/get-recommendations
     
     const params = new URLSearchParams()
+    params.set('limit', '10')
     params.set('seed_genres', genres.join(','))
     params.set('target_energy', `${energy}`)
     params.set('target_valence', `${valence}`)
@@ -42,6 +45,8 @@ export default function MoodMeter({
       setLoading(false)
       console.log('json:', json)
 
+      if ( res.status===401 )
+        router.push('/')
       if ( res.status!==200 )
         return setError("Request or access error!")
 
@@ -63,22 +68,10 @@ export default function MoodMeter({
           }
         })
       });
-
       setPlayList(tracks)
 
-      // if ( !json.display_name )
-      //   return setError("Something didn't work!!")
-
-      // setPlayList({
-      //   name: json.display_name,
-      //   href: json.external_urls.spotify,
-      //   id: json.id,
-      //   image: json.images[1].url,
-      //   followers: json.followers.total,
-      // });
     }).catch(err => {
-      setLoading(false)
-      setError("Network error!"+err.message)
+      router.push('/')
     })
   }
 
