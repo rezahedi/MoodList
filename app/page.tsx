@@ -28,10 +28,10 @@ export default async function Home(
         '&redirect_uri=' + process.env.NEXT_PUBLIC_BASE_URL
     }).then(async (res) => {
       const json = await res.json();
-      console.log( 'res:', json );
       accessToken = json.access_token;
     }).catch(err => {
       console.log( 'err:', err );
+      // TODO: Handle error in UI to acknowledge user about the error!
     });
     
 
