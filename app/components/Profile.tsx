@@ -35,7 +35,6 @@ export default function Profile({
     }).then(async (res) => {
       const json = await res.json()
       setLoading(false)
-      console.log(json)
 
       if ( res.status===401 )
         router.push('/')
