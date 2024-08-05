@@ -17,7 +17,7 @@ export default function MoodMeter({
   const [energy, setEnergy] = useState<number>(0.5)
   const [valence, setValence] = useState<number>(0.5)
 
-  useEffect(() => {
+  const generatePlayList = () => {
     setLoading(true)
 
     // Get Recommendations API docs:
@@ -57,7 +57,7 @@ export default function MoodMeter({
       setLoading(false)
       setError("Network error!"+err.message)
     })
-  }, [token])
+  }
 
   useEffect(() => {
     console.log('energy:', energy, 'valence:', valence);
@@ -77,7 +77,7 @@ export default function MoodMeter({
         min="0" max="100" defaultValue={valence*100}
         onChange={e=>setValence( parseInt(e.currentTarget.value) / 100 )}
       />
-      <button className='rounded-md bg-orange-700 px-4 py-2'>Generate</button>
+      <button className='rounded-md bg-orange-700 px-4 py-2' onClick={generatePlayList}>Generate</button>
       {error && <p className='text-red-600'>{error}</p>}
     </div>
   )
