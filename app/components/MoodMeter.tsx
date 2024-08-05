@@ -17,7 +17,7 @@ export default function MoodMeter({
   const [playList, setPlayList] = useState<Track[]>([]);
   const [energy, setEnergy] = useState<number>(0.5)
   const [valence, setValence] = useState<number>(0.5)
-  const [genres, setGenres] = useState<string[]>([])
+  const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'iranian', 'indian', 'pop'])
 
   const generatePlayList = () => {
     setLoading(true)
@@ -85,9 +85,7 @@ export default function MoodMeter({
   }, [genres])
 
   const addGenre = (genre: string) => {
-    let myArray = genres;
-    myArray.push(genre)
-    setGenres(myArray)
+    setGenres([ ...genres, genre])
   }
 
   const removeGenre = (genre: string) => {
@@ -119,10 +117,11 @@ export default function MoodMeter({
       Select Genres:
       <div className='flex flex-wrap gap-1 justify-center'>
         {allGenres.map((genre, i) => (
-          <label key={i} className='px-2 py-1 rounded-md border border-transparent has-[:checked]:border-white cursor-pointer hover:border-gray-600'>
+          <label key={i} className='px-2 py-1 rounded-md border border-transparent capitalize has-[:checked]:border-white has-[:checked]:bg-gray-800 cursor-pointer hover:border-gray-600'>
             <input
               type='checkbox' className='hidden'
               name='genres' value={genre}
+              checked={genres.find(g=>g==genre)?true:false}
               onChange={handleCheckboxChange}
             />
               {genre}
