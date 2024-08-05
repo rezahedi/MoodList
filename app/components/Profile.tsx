@@ -41,7 +41,7 @@ export default function Profile({
 
       setProfile({
         name: json.display_name,
-        href: json.href,
+        href: json.external_urls.spotify,
         id: json.id,
         image: json.images[1].url,
         followers: json.followers.total,
@@ -58,8 +58,14 @@ export default function Profile({
       {error && <p className='text-red-600'>{error}</p>}
       {!error && !loading && profile &&
         <>
-          <p>{profile.name}</p>
-          <Image src={profile.image} alt={profile.name} width={100} height={100} />
+          <a href={profile.href} target="_blank" className="flex flex-col justify-center gap-2">
+            <Image
+              src={profile.image} alt={profile.name}
+              width={100} height={100}
+              className="rounded-full"
+            />
+            <b>{profile.name}</b>
+          </a>
         </>
       }
       {process.env.SPOTIFY_CLIENT_ID}
