@@ -59,17 +59,23 @@ export default function MoodMeter({
     })
   }, [token])
 
+  useEffect(() => {
+    console.log('energy:', energy, 'valence:', valence);
+  }, [energy, valence])
+
   return (
     <div className='flex flex-col gap-4 items-center'>
       Level of Energy:
       <input
         name="energy" id="energy" type="range" className="slider"
-        min="0" max="100" defaultValue={50}
+        min="0" max="100" defaultValue={energy*100}
+        onChange={e=>setEnergy( parseInt(e.currentTarget.value) / 100 )}
       />
       Level of Pleasantness:
       <input
         name="pleasantness" id="pleasantness" type="range" className="slider"
-        min="0" max="100" defaultValue={50}
+        min="0" max="100" defaultValue={valence*100}
+        onChange={e=>setValence( parseInt(e.currentTarget.value) / 100 )}
       />
       <button className='rounded-md bg-orange-700 px-4 py-2'>Generate</button>
       {error && <p className='text-red-600'>{error}</p>}
