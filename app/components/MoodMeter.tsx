@@ -98,8 +98,9 @@ export default function MoodMeter({
         onChange={e=>setValence( parseInt(e.currentTarget.value) / 100 )}
       />
       <button className='rounded-md bg-orange-700 px-4 py-2' onClick={generatePlayList}>Generate</button>
+      {loading && <p>Loading...</p>}
       {error && <p className='text-red-600'>{error}</p>}
-      {playList && <PlayList tracks={playList} />}
+      {!loading && !error && playList.length>0 && <PlayList tracks={playList} />}
     </div>
   )
 }
