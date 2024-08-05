@@ -37,10 +37,8 @@ export default async function Home(
 
     return (
       <main>
-        <p>Connected!</p>
         <Profile token={accessToken} />
-
-        <MoodMeter />
+        <MoodMeter token={accessToken} />
       </main>
     );
   }

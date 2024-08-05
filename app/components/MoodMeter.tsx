@@ -1,5 +1,8 @@
-
-export default function MoodMeter() {
+export default function MoodMeter({
+  token
+}: {
+  token: string
+}) {
 
   // TODO: Use below resource for moody playlist
   // https://developer.spotify.com/documentation/web-api/reference/get-audio-features
