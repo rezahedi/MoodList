@@ -18,6 +18,8 @@ export default function MoodMeter({
   const [energy, setEnergy] = useState<number>(0.5)
   const [valence, setValence] = useState<number>(0.5)
   const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'iranian', 'indian', 'pop'])
+  const genresMaxLimit = 5;
+  const genresMinLimit = 1;
 
   const generatePlayList = () => {
     setLoading(true)
@@ -80,15 +82,17 @@ export default function MoodMeter({
     })
   }
 
-  useEffect(() => {
-    console.log('Genres:', genres);
-  }, [genres])
-
   const addGenre = (genre: string) => {
+    if( genres.length >= genresMaxLimit )
+      return alert(`Genres selection limit exceeded (max ${genresMaxLimit}).`)
+    
     setGenres([ ...genres, genre])
   }
 
   const removeGenre = (genre: string) => {
+    if( genres.length == genresMinLimit )
+      return alert(`Genres selection minimum limit is ${genresMaxLimit} genre.`)
+
     let myArray = genres.filter(a => a!=genre)
     setGenres(myArray)
   }
