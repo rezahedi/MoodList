@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 type Profile = {
   name: string,
@@ -20,6 +21,7 @@ export default function Profile({
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string>('')
+  const router = useRouter()
  
   useEffect(() => {
     setLoading(true)
@@ -33,7 +35,10 @@ export default function Profile({
     }).then(async (res) => {
       const json = await res.json()
       setLoading(false)
+      console.log(json)
 
+      if ( res.status===401 )
+        router.push('/')
       if ( res.status!==200 )
         return setError("Request or access error!")
       if ( !json.display_name )
@@ -48,6 +53,7 @@ export default function Profile({
       });
     }).catch(err => {
       setLoading(false)
+      router.push('/')
       setError("Network error!")
     })
   }, [token])
