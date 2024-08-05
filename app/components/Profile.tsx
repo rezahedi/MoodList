@@ -68,7 +68,6 @@ export default function Profile({
           </a>
         </>
       }
-      {process.env.SPOTIFY_CLIENT_ID}
     </div>
   )
 }
