@@ -66,16 +66,20 @@ export default function PlayList({
           <div
             key={track.id}
             className='border rounded-md p-4 flex gap-2 items-center'
-            onClick={() => setPlayerTrack(track.url)}
           >
             <Image
               src={track.album.image} alt={track.album.name}
               width={100} height={100}
             />
-            <div className='flex flex-col'>
-              <a href={track.url} target='_blank'><b>{track.name}</b></a>
-              <a href="#" target='_blank'>Artist Name</a>
-              <a href={track.album.url} target='_blank'>{track.album.name}</a>
+            <div className='flex flex-col flex-grow'>
+              <b>{track.name}</b>
+              <span>Artist Name</span>
+              <span>{track.album.name}</span>
+            </div>
+            <div className='flex flex-col gap-1'>
+              <span>Open on:</span>
+              <a className='rounded-md bg-orange-700 px-2 py-1' href={track.url} target='_blank'>Spotify</a>
+              <button className='rounded-md bg-orange-700 px-2 py-1' onClick={() => setPlayerTrack(track.url)}>Player</button>
             </div>
           </div>
         )}
