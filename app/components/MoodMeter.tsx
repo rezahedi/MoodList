@@ -49,10 +49,12 @@ export default function MoodMeter({
       if ( res.status!==200 )
         return setError("Request or access error!")
 
+      console.log(json.tracks)
       let tracks : Track[] = []
       json.tracks.map(track => {
         tracks.push({
           id: track.id,
+          uri: track.uri,
           url: track.external_urls.spotify,
           name: track.name,
           artists: [
