@@ -11,7 +11,7 @@ export default async function Home(
     }
   }
 ) {
-  const scope = 'user-read-private user-read-email';
+  const scope = 'playlist-modify-public playlist-modify-private';
   let accessToken = "";
 
   if(searchParams.code) {
@@ -45,7 +45,7 @@ export default async function Home(
 
   return (
     <main>
-      <Link href={`https://accounts.spotify.com/authorize?response_type=code&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}>
+      <Link href={`https://accounts.spotify.com/authorize?response_type=code&scope=${scope}&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}>
         Connect to Spotify
       </Link>
     </main>

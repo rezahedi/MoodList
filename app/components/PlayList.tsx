@@ -40,12 +40,12 @@ export default function PlayList({
       const json = await res.json()
       setLoading(false)
 
+      console.log('playlist save:', json)
+
       if ( res.status===401 )
         router.push('/')
       if ( res.status!==200 )
         return setError("Request or access error!")
-
-      console.log('playlist save:', json)
 
       setResultURL(json.external_urls.spotify)
 
@@ -79,7 +79,7 @@ export default function PlayList({
         <p>Do you want to save these as a playlist in your Spotify account?</p>
         <button className='rounded-md bg-orange-700 px-4 py-2' onClick={savePlaylist}>Yes, Save it!</button>
         {loading && <p>Saving...</p>}
-        {error && <p className='text-red-600'>Error while saving the playlist in your account!</p>}
+        {error && <p className='text-red-600'>{error}</p>}
         {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}
       </>}
     </div>
