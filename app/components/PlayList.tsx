@@ -12,6 +12,7 @@ export default function PlayList({
   token: string
 }) {
 
+  const [playerTrack, setPlayerTrack] = useState<string>( tracks[0].url )
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [resultURL, setResultURL] = useState<string>('')
@@ -65,6 +66,7 @@ export default function PlayList({
           <div
             key={track.id}
             className='border rounded-md p-4 flex gap-2 items-center'
+            onClick={() => setPlayerTrack(track.url)}
           >
             <Image
               src={track.album.image} alt={track.album.name}
@@ -82,7 +84,7 @@ export default function PlayList({
         {loading && <p>Saving...</p>}
         {error && <p className='text-red-600'>{error}</p>}
         {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}
-        <Spotify className='sticky bottom-0 w-full' wide link={tracks[0].url} />
+        <Spotify className='sticky bottom-0 w-full' wide link={playerTrack} />
       </>}
     </div>
   )
