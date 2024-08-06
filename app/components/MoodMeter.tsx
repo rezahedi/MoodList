@@ -125,7 +125,7 @@ export default function MoodMeter({
       <button className='rounded-md bg-orange-700 px-4 py-2' onClick={generatePlayList}>Generate</button>
       {loading && <p>Loading...</p>}
       {error && <p className='text-red-600'>{error}</p>}
-      {!loading && !error && playList.length>0 && <PlayList tracks={playList} />}
+      {!loading && !error && playList.length>0 && <PlayList tracks={playList} token={token} />}
     </div>
   )
 }

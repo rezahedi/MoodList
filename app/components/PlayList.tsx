@@ -1,19 +1,57 @@
 import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useRouter } from "next/navigation"
 
 export default function PlayList({
-  tracks
+  tracks,
+  token
 }: {
   tracks: Track[]
+  token: string
 }) {
 
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [resultURL, setResultURL] = useState<string>('')
+  const router = useRouter()
+
+  // FIXME: Temporary value to test!
+  let username = '12120680111'
 
   const savePlaylist = () => {
     setLoading(true)
+
+    // TODO: Creating a playlist
+    // https://developer.spotify.com/documentation/web-api/reference/create-playlist
+
+    fetch(`https://api.spotify.com/v1/users/${username}/playlists`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'Playlist name',
+        description: 'Playlist description',
+        public: false
+      })
+    }).then(async (res) => {
+      const json = await res.json()
+      setLoading(false)
+
+      if ( res.status===401 )
+        router.push('/')
+      if ( res.status!==200 )
+        return setError("Request or access error!")
+
+      console.log('playlist save:', json)
+
+      setResultURL(json.external_urls.spotify)
+
+    }).catch(err => {
+      router.push('/')
+    })
     console.log('save clicked!')
   }
 
