@@ -43,14 +43,11 @@ export default function MoodMeter({
     }).then(async (res) => {
       const json = await res.json()
       setLoading(false)
-      console.log('json:', json)
 
       if ( res.status===401 )
         router.push('/')
       if ( res.status!==200 )
         return setError("Request or access error!")
-
-      console.log('recommendation:', json)
 
       let tracks : Track[] = []
       json.tracks.map(track => {
