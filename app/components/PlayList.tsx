@@ -39,10 +39,10 @@ export default function PlayList({
         public: false
       })
     }).then(async (res) => {
-      const json = await res.json()
+      const createdPlaylist = await res.json()
       setLoading(false)
 
-      console.log('playlist save:', json)
+      console.log('playlist save:', createdPlaylist)
 
       if ( res.status===401 )
         router.push('/')
@@ -52,10 +52,19 @@ export default function PlayList({
       // TODO: Add tracks to the created playlist
       // https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
 
-      let uris = tracks.map(track => track.uri).join(',')
-      console.log('uris:', uris)
+      let uris = tracks.map(track => track.uri);
+      await fetch(`https://api.spotify.com/v1/playlists/${createdPlaylist.id}/tracks`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uris: uris
+        })
+      })
 
-      setResultURL(json.external_urls.spotify)
+      setResultURL(createdPlaylist.external_urls.spotify)
 
     }).catch(err => {
       router.push('/')
