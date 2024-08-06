@@ -40,14 +40,13 @@ export default function PlayList({
       })
     }).then(async (res) => {
       const createdPlaylist = await res.json()
-      setLoading(false)
-
-      console.log('playlist save:', createdPlaylist)
 
       if ( res.status===401 )
         router.push('/')
-      if ( res.status!==201 )
+      if ( res.status!==201 ) {
+        setLoading(false)
         return setError("Request or access error!")
+      }
 
       // TODO: Add tracks to the created playlist
       // https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
@@ -62,6 +61,14 @@ export default function PlayList({
         body: JSON.stringify({
           uris: uris
         })
+      }).then(async (res) => {
+        const json = await res.json()
+        setLoading(false)
+  
+        if ( res.status===401 )
+          router.push('/')
+        if ( res.status!==201 )
+          return setError("Couldn't add tracks to playlist, Request or access error!")
       })
 
       setResultURL(createdPlaylist.external_urls.spotify)
@@ -69,7 +76,6 @@ export default function PlayList({
     }).catch(err => {
       router.push('/')
     })
-    console.log('save clicked!')
   }
 
   return (
