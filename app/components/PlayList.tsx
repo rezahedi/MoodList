@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from "next/navigation"
-import SpotifyPlayer from 'react-spotify-web-playback';
 
 export default function PlayList({
   tracks,
@@ -77,10 +76,6 @@ export default function PlayList({
             </div>
           </div>
         )}
-        <SpotifyPlayer
-          token={token}
-          uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
-        />
         <p>Do you want to save these as a playlist in your Spotify account?</p>
         <button className='rounded-md bg-orange-700 px-4 py-2' onClick={savePlaylist}>Yes, Save it!</button>
         {loading && <p>Saving...</p>}
