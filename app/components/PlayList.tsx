@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from "next/navigation"
+import { Spotify } from 'react-spotify-embed'
 
 export default function PlayList({
   tracks,
@@ -81,6 +82,7 @@ export default function PlayList({
         {loading && <p>Saving...</p>}
         {error && <p className='text-red-600'>{error}</p>}
         {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}
+        <Spotify className='sticky bottom-0 w-full' wide link={tracks[0].url} />
       </>}
     </div>
   )
