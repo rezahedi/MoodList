@@ -49,6 +49,12 @@ export default function PlayList({
       if ( res.status!==200 )
         return setError("Request or access error!")
 
+      // TODO: Add tracks to the created playlist
+      // https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
+
+      
+
+
       setResultURL(json.external_urls.spotify)
 
     }).catch(err => {
