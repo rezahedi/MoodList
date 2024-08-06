@@ -52,8 +52,8 @@ export default function PlayList({
       // TODO: Add tracks to the created playlist
       // https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
 
-      
-
+      let uris = tracks.map(track => track.id).join(',')
+      console.log('uris:', uris)
 
       setResultURL(json.external_urls.spotify)
 
