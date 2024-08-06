@@ -1,12 +1,19 @@
 import React from 'react'
 import Image from 'next/image'
+import { useState } from 'react'
 
 export default function PlayList({
   tracks
 }: {
   tracks: Track[]
 }) {
+
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+  const [resultURL, setResultURL] = useState<string>('')
+
   const savePlaylist = () => {
+    setLoading(true)
     console.log('save clicked!')
   }
 
@@ -33,6 +40,9 @@ export default function PlayList({
         )}
         <p>Do you want to save these as a playlist in your Spotify account?</p>
         <button className='rounded-md bg-orange-700 px-4 py-2' onClick={savePlaylist}>Yes, Save it!</button>
+        {loading && <p>Saving...</p>}
+        {error && <p className='text-red-600'>Error while saving the playlist in your account!</p>}
+        {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}
       </>}
     </div>
   )
