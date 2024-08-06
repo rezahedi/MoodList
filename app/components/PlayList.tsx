@@ -46,7 +46,7 @@ export default function PlayList({
 
       if ( res.status===401 )
         router.push('/')
-      if ( res.status!==200 )
+      if ( res.status!==201 )
         return setError("Request or access error!")
 
       // TODO: Add tracks to the created playlist
