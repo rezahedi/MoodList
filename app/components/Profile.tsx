@@ -37,7 +37,7 @@ export default function Profile({
       setLoading(false)
 
       if ( res.status===401 )
-        router.push('/')
+        router.push('/?msg=sessiontimeout')
       if ( res.status!==200 )
         return setError("Request or access error!")
       if ( !json.display_name )
@@ -51,7 +51,7 @@ export default function Profile({
         followers: json.followers.total,
       });
     }).catch(err => {
-      router.push('/')
+      router.push('/?msg=sessiontimeout')
     })
   }, [token])
 

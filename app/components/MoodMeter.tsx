@@ -45,7 +45,7 @@ export default function MoodMeter({
       setLoading(false)
 
       if ( res.status===401 )
-        router.push('/')
+        router.push('/?msg=sessiontimeout')
       if ( res.status!==200 )
         return setError("Request or access error!")
 
@@ -70,7 +70,7 @@ export default function MoodMeter({
       setPlayList(tracks)
 
     }).catch(err => {
-      router.push('/')
+      router.push('/?msg=sessiontimeout')
     })
   }
 

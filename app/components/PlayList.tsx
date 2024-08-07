@@ -42,7 +42,7 @@ export default function PlayList({
       const createdPlaylist = await res.json()
 
       if ( res.status===401 )
-        router.push('/')
+        router.push('/?msg=sessiontimeout')
       if ( res.status!==201 ) {
         setLoading(false)
         return setError("Request or access error!")
@@ -66,7 +66,7 @@ export default function PlayList({
         setLoading(false)
   
         if ( res.status===401 )
-          router.push('/')
+          router.push('/?msg=sessiontimeout')
         if ( res.status!==201 )
           return setError("Couldn't add tracks to playlist, Request or access error!")
       })
@@ -74,7 +74,7 @@ export default function PlayList({
       setResultURL(createdPlaylist.external_urls.spotify)
 
     }).catch(err => {
-      router.push('/')
+      router.push('/?msg=sessiontimeout')
     })
   }
 

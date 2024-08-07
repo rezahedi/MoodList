@@ -8,6 +8,7 @@ export default async function Home(
   }: {
     searchParams: {
       code: string;
+      msg: string;
     }
   }
 ) {
@@ -45,6 +46,7 @@ export default async function Home(
 
   return (
     <main>
+      {searchParams.msg && searchParams.msg=='sessiontimeout' && <p className='text-red-600'>Your session has expired. Please try again.</p>}
       <Link href={`https://accounts.spotify.com/authorize?response_type=code&scope=${scope}&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}>
         Connect to Spotify
       </Link>
