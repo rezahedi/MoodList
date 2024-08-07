@@ -17,7 +17,7 @@ export default function MoodMeter({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('')
   const [playList, setPlayList] = useState<Track[]>([]);
-  const [energy, setEnergy] = useState<number>(0.5)
+  const [energy, setEnergy] = useState<number>(0.6)
   const [valence, setValence] = useState<number>(0.5)
   const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'iranian', 'indian', 'pop'])
   const genresMaxLimit = 5;
@@ -100,18 +100,6 @@ export default function MoodMeter({
   return (
     <div className='flex flex-col gap-4 items-center'>
       <MoodRange setEnergy={setEnergy} setValence={setValence} />
-      Level of Energy:
-      <input
-        name="energy" id="energy" type="range" className="slider"
-        min="0" max="100" defaultValue={energy*100}
-        onChange={e=>setEnergy( parseInt(e.currentTarget.value) / 100 )}
-      />
-      Level of Pleasantness:
-      <input
-        name="pleasantness" id="pleasantness" type="range" className="slider"
-        min="0" max="100" defaultValue={valence*100}
-        onChange={e=>setValence( parseInt(e.currentTarget.value) / 100 )}
-      />
       Select Genres:
       <div className='flex flex-wrap gap-1 justify-center'>
         {allGenres.map((genre, i) => (
