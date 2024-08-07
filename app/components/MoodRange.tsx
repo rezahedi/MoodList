@@ -1,4 +1,4 @@
-import React from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 // Array set copied from https://codepen.io/pandahead33/pen/dyQveJR
 const emotions = [
@@ -15,10 +15,18 @@ const emotions = [
 ]
 
 // Design inspired by https://www.etsy.com/listing/1340253512/mood-meter-digital-poster-printable-mood
-export default function MoodRange() {
+export default function MoodRange({
+  setEnergy,
+  setValence
+}: {
+  setEnergy: Dispatch<SetStateAction<number>>,
+  setValence: Dispatch<SetStateAction<number>>,
+}) {
 
   const handleClick = (num: number) => {
     console.log( 'energy:', (num%10+1)/10, 'valence:', (Math.trunc(num/10)+1)/10 )
+    setEnergy( (num%10+1)/10 )
+    setValence( (Math.trunc(num/10)+1)/10 )
   }
 
   return (

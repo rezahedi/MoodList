@@ -99,7 +99,7 @@ export default function MoodMeter({
 
   return (
     <div className='flex flex-col gap-4 items-center'>
-      <MoodRange />
+      <MoodRange setEnergy={setEnergy} setValence={setValence} />
       Level of Energy:
       <input
         name="energy" id="energy" type="range" className="slider"
