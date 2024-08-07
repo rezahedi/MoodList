@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 // Array set copied from https://codepen.io/pandahead33/pen/dyQveJR
 const emotions = [
@@ -23,21 +23,24 @@ export default function MoodRange({
   setValence: Dispatch<SetStateAction<number>>,
 }) {
 
+  const [defaultMood, setDefaultMood] = useState<string>('pleased')
+
   const handleClick = (num: number) => {
     console.log( 'energy:', (num%10+1)/10, 'valence:', (Math.trunc(num/10)+1)/10 )
     setEnergy( (num%10+1)/10 )
     setValence( (Math.trunc(num/10)+1)/10 )
+    setDefaultMood(emotions[num])
   }
 
   return (
-    // <div className='size-[400px] relative' style={{clipPath: 'inset(0)'}}> 
     <div>
       <h2 className='font-bold text-2xl text-center'>Mood Board</h2>
+      <p className='text-center text-sm'>Click on a mood to set your mood</p>
       <div className='gap-1 grid grid-cols-10 min-w-fit my-4'>
         {emotions.map((emotion, i) => (
           <div
             key={i}
-            className='bg-gray-600 p-1 py-2 text-center capitalize w-28 cursor-pointer hover:bg-gray-700'
+            className={`p-1 py-2 text-center capitalize w-28 cursor-pointer border hover:bg-gray-700 ${defaultMood === emotion ? 'bg-gray-700 border-gray-100' : 'bg-gray-600 border-transparent'}`}
             onClick={()=>handleClick(i)}
           >
             {emotion}
