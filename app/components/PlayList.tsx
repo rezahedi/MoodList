@@ -79,31 +79,33 @@ export default function PlayList({
   }
 
   return (
-    <div className='space-y-2'>
+    <>
       {tracks &&
       <>
-        PlayList:
-        {tracks.map(track => 
-          <div
-            key={track.id}
-            className='border rounded-md p-4 flex gap-2 items-center'
-          >
-            <Image
-              src={track.album.image} alt={track.album.name}
-              width={100} height={100}
-            />
-            <div className='flex flex-col flex-grow'>
-              <b>{track.name}</b>
-              <span>Artist Name</span>
-              <span>{track.album.name}</span>
+        <h2 className='font-bold text-2xl text-center'>Generated Playlist</h2>
+        <div className='space-y-2'>
+          {tracks.map(track => 
+            <div
+              key={track.id}
+              className='border rounded-md p-4 flex gap-2 items-center'
+            >
+              <Image
+                src={track.album.image} alt={track.album.name}
+                width={100} height={100}
+              />
+              <div className='flex flex-col flex-grow'>
+                <b>{track.name}</b>
+                <span>Artist Name</span>
+                <span>{track.album.name}</span>
+              </div>
+              <div className='flex flex-col gap-1'>
+                <span>Open on:</span>
+                <a className='rounded-md bg-orange-700 px-2 py-1' href={track.url} target='_blank'>Spotify</a>
+                <button className='rounded-md bg-orange-700 px-2 py-1' onClick={() => setPlayerTrack(track.url)}>Player</button>
+              </div>
             </div>
-            <div className='flex flex-col gap-1'>
-              <span>Open on:</span>
-              <a className='rounded-md bg-orange-700 px-2 py-1' href={track.url} target='_blank'>Spotify</a>
-              <button className='rounded-md bg-orange-700 px-2 py-1' onClick={() => setPlayerTrack(track.url)}>Player</button>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
         <p>Do you want to save these as a playlist in your Spotify account?</p>
         <button className='rounded-md bg-orange-700 px-4 py-2' onClick={savePlaylist}>Yes, Save it!</button>
         {loading && <p>Saving...</p>}
@@ -111,7 +113,7 @@ export default function PlayList({
         {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}
         <Spotify className='sticky bottom-0 w-full' wide link={playerTrack} />
       </>}
-    </div>
+    </>
   )
 }
 

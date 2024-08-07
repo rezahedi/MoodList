@@ -56,11 +56,11 @@ export default function Profile({
   }, [token])
 
   return (
-    <div>
+    <>
       {loading && <p>Loading...</p>}
       {error && <p className='text-red-600'>{error}</p>}
       {!error && !loading && profile &&
-        <div>
+        <>
           <a href={profile.href} target="_blank" className="flex flex-col justify-center gap-2">
             <Image
               src={profile.image} alt={profile.name}
@@ -70,8 +70,8 @@ export default function Profile({
             <b>{profile.name}</b>
           </a>
           <button className='rounded-md bg-orange-700 px-4 py-2' onClick={()=>router.push('/?msg=logout')}>Logout</button>
-        </div>
+        </>
       }
-    </div>
+    </>
   )
 }
