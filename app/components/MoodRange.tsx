@@ -1,0 +1,41 @@
+import React from 'react'
+
+// Array set copied from https://codepen.io/pandahead33/pen/dyQveJR
+const emotions = [
+  "enraged", "panicked", "stressed", "jittery", "shocked", "surprised", "upbeat", "festive", "exhilarated", "ecstatic",
+  "livid", "furious", "frustrated", "tense", "stunned", "hyper", "cheerful", "motivated", "inspired", "elated",
+  "fuming", "frightened", "angry", "nervous", "restless", "energized", "lively", "enthusiastic", "optimistic", "excited",
+  "anxious", "apprehensive", "worried", "irritated", "annoyed", "pleased", "happy", "focused", "proud", "thrilled",
+  "repulsed", "troubled", "concerned", "uneasy", "peeved", "pleasant", "joyful", "hopeful", "playful", "blissful",
+  "disgusted", "glum", "disappointed", "down", "apathetic", "at ease", "easygoing", "content", "loving", "fulfilled",
+  "pessimistic", "morose", "discouraged", "sad", "bored", "calm", "secure", "satisfied", "grateful", "touched",
+  "alienated", "miserable", "lonely", "disheartened", "tired", "relaxed", "chill", "restful", "blessed", "balanced",
+  "despondent", "depressed", "sullen", "exhausted", "fatigued", "mellow", "thoughtful", "peaceful", "comfy", "carefree",
+  "in despair", "hopeless", "desolate", "spent", "drained", "sleepy", "complacent", "tranquil", "cozy", "serene"
+]
+
+// Design inspired by https://www.etsy.com/listing/1340253512/mood-meter-digital-poster-printable-mood
+export default function MoodRange() {
+
+  const handleClick = (num: number) => {
+    console.log( 'energy:', (num%10+1)/10, 'valence:', (Math.trunc(num/10)+1)/10 )
+  }
+
+  return (
+    // <div className='size-[400px] relative' style={{clipPath: 'inset(0)'}}> 
+    <div>
+      <h2 className='font-bold text-2xl text-center'>Mood Board</h2>
+      <div className='gap-1 grid grid-cols-10 min-w-fit my-4'>
+        {emotions.map((emotion, i) => (
+          <div
+            key={i}
+            className='bg-gray-600 p-1 py-2 text-center capitalize w-28 cursor-pointer hover:bg-gray-700'
+            onClick={()=>handleClick(i)}
+          >
+            {emotion}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

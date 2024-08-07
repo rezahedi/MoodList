@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import PlayList, { Track } from './PlayList'
 import { useRouter } from "next/navigation"
+import MoodRange from './MoodRange'
 
 // Got available genre seeds from here:
 // https://developer.spotify.com/documentation/web-api/reference/get-recommendation-genres
@@ -98,6 +99,7 @@ export default function MoodMeter({
 
   return (
     <div className='flex flex-col gap-4 items-center'>
+      <MoodRange />
       Level of Energy:
       <input
         name="energy" id="energy" type="range" className="slider"
