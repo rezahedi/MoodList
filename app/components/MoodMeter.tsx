@@ -78,7 +78,7 @@ export default function MoodMeter({
 
   const addGenre = (genre: string) => {
     if( genres.length >= genresMaxLimit )
-      return alert(`Genres selection limit exceeded (max ${genresMaxLimit}).`)
+      return setGenres( [...genres.slice(1), genre] )
     
     setGenres([ ...genres, genre])
   }
