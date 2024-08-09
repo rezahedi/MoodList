@@ -20,7 +20,7 @@ export default function MoodMeter({
   const [energy, setEnergy] = useState<number>(0.6)
   const [valence, setValence] = useState<number>(0.5)
   const [playlistTitle, setPlaylistTitle] = useState<string>('')
-  const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'iranian', 'indian', 'pop'])
+  const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'pop'])
   const genresMaxLimit = 5;
   const genresMinLimit = 1;
   const router = useRouter()
