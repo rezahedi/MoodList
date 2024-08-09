@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation"
 import { Spotify } from 'react-spotify-embed'
 
 export default function PlayList({
+  name,
   tracks,
   token
 }: {
+  name: string,
   tracks: Track[]
   token: string
 }) {
@@ -34,8 +36,8 @@ export default function PlayList({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: 'Playlist name',
-        description: 'Playlist description',
+        name,
+        description: 'Playlist created by MoodList application!',
         public: false
       })
     }).then(async (res) => {

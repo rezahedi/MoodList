@@ -19,6 +19,7 @@ export default function MoodMeter({
   const [playList, setPlayList] = useState<Track[]>([]);
   const [energy, setEnergy] = useState<number>(0.6)
   const [valence, setValence] = useState<number>(0.5)
+  const [playlistTitle, setPlaylistTitle] = useState<string>('')
   const [genres, setGenres] = useState<string[]>(['french', 'spanish', 'iranian', 'indian', 'pop'])
   const genresMaxLimit = 5;
   const genresMinLimit = 1;
@@ -99,7 +100,7 @@ export default function MoodMeter({
 
   return (
     <>
-      <MoodRange setEnergy={setEnergy} setValence={setValence} />
+      <MoodRange setEnergy={setEnergy} setValence={setValence} setPlaylistName={setPlaylistTitle} />
 
       <div>
         <h2 className='font-bold text-2xl text-center'>Genres</h2>
@@ -121,7 +122,7 @@ export default function MoodMeter({
       <button className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={generatePlayList}>Generate</button>
       {loading && <p>Loading...</p>}
       {error && <p className='text-red-600'>{error}</p>}
-      {!loading && !error && playList.length>0 && <PlayList tracks={playList} token={token} />}
+      {!loading && !error && playList.length>0 && <PlayList name={playlistTitle} tracks={playList} token={token} />}
     </>
   )
 }

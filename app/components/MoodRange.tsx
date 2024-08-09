@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState, useEffect } from 'react'
 
 // Array set copied from https://codepen.io/pandahead33/pen/dyQveJR
 const emotions = [
@@ -17,10 +17,12 @@ const emotions = [
 // Design inspired by https://www.etsy.com/listing/1340253512/mood-meter-digital-poster-printable-mood
 export default function MoodRange({
   setEnergy,
-  setValence
+  setValence,
+  setPlaylistName
 }: {
   setEnergy: Dispatch<SetStateAction<number>>,
   setValence: Dispatch<SetStateAction<number>>,
+  setPlaylistName: Dispatch<SetStateAction<string>>,
 }) {
 
   const [defaultMood, setDefaultMood] = useState<string>('pleased')
@@ -31,6 +33,11 @@ export default function MoodRange({
     setValence( (Math.trunc(num/10)+1)/10 )
     setDefaultMood(emotions[num])
   }
+
+  useEffect(() => {
+    let capitalizedMood = defaultMood.charAt(0).toUpperCase() + defaultMood.slice(1)
+    setPlaylistName(`${capitalizedMood} - MoodList`) 
+  }, [defaultMood])
 
   return (
     <div>
