@@ -87,7 +87,7 @@ export default function PlayList({
           {tracks.map(track => 
             <div
               key={track.id}
-              className='border rounded-md p-4 flex gap-2 items-center'
+              className='border rounded-md border-gray-400 p-4 flex gap-2 items-center'
             >
               <Image
                 src={track.album.image} alt={track.album.name}
@@ -100,14 +100,14 @@ export default function PlayList({
               </div>
               <div className='flex flex-col gap-1'>
                 <span>Open on:</span>
-                <a className='rounded-md bg-orange-700 px-2 py-1' href={track.url} target='_blank'>Spotify</a>
-                <button className='rounded-md bg-orange-700 px-2 py-1' onClick={() => setPlayerTrack(track.url)}>Player</button>
+                <a className='rounded-md text-white hover:text-white no-underline bg-green-700 px-3 py-1 transition-all duration-100 hover:scale-105' href={track.url} target='_blank'>Spotify</a>
+                <button className='rounded-md text-white bg-green-700 px-3 py-1 transition-all duration-100 hover:scale-105' onClick={() => setPlayerTrack(track.url)}>Player</button>
               </div>
             </div>
           )}
         </div>
         <p>Do you want to save these as a playlist in your Spotify account?</p>
-        <button className='rounded-md bg-orange-700 px-4 py-2' onClick={savePlaylist}>Yes, Save it!</button>
+        <button className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={savePlaylist}>Yes, Save it!</button>
         {loading && <p>Saving...</p>}
         {error && <p className='text-red-600'>{error}</p>}
         {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}

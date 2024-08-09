@@ -39,11 +39,13 @@ export default async function Home(
 
     return (
       <div className="flex flex-col">
-        <main className="flex flex-col gap-4 items-center container mx-auto max-w-screen-xl">
-          <header className="flex w-full sticky top-0 bg-black/75 backdrop-blur-sm p-4">
+        <header className="w-full sticky top-0 dark:bg-black/50 bg-white/50 backdrop-blur-sm p-4">
+          <div className="flex container mx-auto max-w-screen-xl">
             <h1 className="text-4xl font-bold flex-grow">Mood List</h1>
             <Profile token={accessToken} />
-          </header>
+          </div>
+        </header>
+        <main className="flex flex-col gap-4 items-center container mx-auto max-w-screen-xl pt-4">
           <MoodMeter token={accessToken} />
         </main>
         <footer className="text-sm border-t border-gray-400 py-4 mt-10 text-gray-400 container mx-auto max-w-screen-md text-center">
@@ -62,7 +64,7 @@ export default async function Home(
         <p>This application uses Spotify's API to generate a playlist based on your mood and your genre selection, and then gave you the ability to play or save it as a private playlist in your Spotify account. So to do this, Mood List need the necessary permissions on your Spotify's account.</p>  
         <Link
           href={`https://accounts.spotify.com/authorize?response_type=code&scope=${scope}&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}
-          className="rounded-md bg-green-700 no-underline hover:text-white transition-all duration-100 hover:scale-105 px-4 py-2 text-xl" 
+          className="rounded-md bg-green-700 no-underline text-white hover:text-white transition-all duration-100 hover:scale-105 px-4 py-2 text-xl" 
         >
           Connect with Spotify
         </Link>

@@ -107,7 +107,7 @@ export default function MoodMeter({
       </div>
       <div className='flex flex-wrap gap-1 justify-center'>
         {allGenres.map((genre, i) => (
-          <label key={i} className='px-2 py-1 rounded-md border border-transparent capitalize has-[:checked]:border-green-600 has-[:checked]:bg-green-950 cursor-pointer hover:border-gray-600'>
+          <label key={i} className='px-2 py-1 rounded-md border border-transparent capitalize has-[:checked]:border-green-600 has-[:checked]:bg-green-700 dark:has-[:checked]:bg-green-950 cursor-pointer hover:border-gray-600'>
             <input
               type='checkbox' className='hidden'
               name='genres' value={genre}
@@ -118,7 +118,7 @@ export default function MoodMeter({
           </label>
         ))}
       </div>
-      <button className='rounded-md bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={generatePlayList}>Generate</button>
+      <button className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={generatePlayList}>Generate</button>
       {loading && <p>Loading...</p>}
       {error && <p className='text-red-600'>{error}</p>}
       {!loading && !error && playList.length>0 && <PlayList tracks={playList} token={token} />}

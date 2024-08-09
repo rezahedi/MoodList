@@ -69,7 +69,7 @@ export default function Profile({
               className="rounded-full"
             />
           </a>
-          <button className='rounded-md bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={()=>router.push('/?msg=logout')}>Logout</button>
+          <button className='rounded-md bg-green-700 text-white px-4 py-2 transition-all duration-100 hover:scale-105' onClick={()=>router.push('/?msg=logout')}>Logout</button>
         </div>
       }
     </>
