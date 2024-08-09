@@ -85,7 +85,7 @@ export default function MoodMeter({
 
   const removeGenre = (genre: string) => {
     if( genres.length == genresMinLimit )
-      return alert(`Genres selection minimum limit is ${genresMaxLimit} genre.`)
+      return alert(`Genres selection minimum limit is ${genresMinLimit} genre.`)
 
     let myArray = genres.filter(a => a!=genre)
     setGenres(myArray)
