@@ -31,3 +31,10 @@ body {
     text-wrap: balance;
   }
 }
+a{
+  text-decoration: underline;
+}
+a:hover{
+  text-decoration: none;
+  color: #15803d;
+}

@@ -38,25 +38,40 @@ export default async function Home(
     
 
     return (
-      <main className="p-4 flex flex-col gap-4 items-center container mx-auto max-w-screen-xl">
-        <Profile token={accessToken} />
-        <MoodMeter token={accessToken} />
-      </main>
+      <div className="flex flex-col">
+        <main className="flex flex-col gap-4 items-center container mx-auto max-w-screen-xl">
+          <header className="flex w-full sticky top-0 bg-black/75 backdrop-blur-sm p-4">
+            <h1 className="text-4xl font-bold flex-grow">Mood List</h1>
+            <Profile token={accessToken} />
+          </header>
+          <MoodMeter token={accessToken} />
+        </main>
+        <footer className="text-sm border-t border-gray-400 py-4 mt-10 text-gray-400 container mx-auto max-w-screen-md text-center">
+          Mood List powered by <a href="https://developer.spotify.com/documentation/web-api/reference/get-recommendations" target="_blank">Spotify API</a>, <a href="https://nextjs.org/" target="_blank">Next.js</a> and <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>.
+          Source code available on <a href="https://github.com/rezahedi/moodlist" target="_blank">GitHub</a>.
+        </footer>
+      </div>
     );
   }
 
   return (
-    <main className="p-4 flex flex-col gap-4 items-center container mx-auto max-w-screen-xl">
-      <h1 className="text-4xl font-bold">Spotify Mood Meter</h1>
-      <p>This is a application that uses Spotify's API to generate a playlist based on your mood and your genre selection, and then you can play or save the playlist to your Spotify account as a private playlist.</p>
-      <Image src="/mood-meter-etsy.jpg" alt="Mood Meter Photo" width={400} height={400} />
-      <Link
-        href={`https://accounts.spotify.com/authorize?response_type=code&scope=${scope}&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}
-        className="rounded-md bg-green-700 px-4 py-2 text-xl"
-      >
-        Connect to Spotify
-      </Link>
-      {searchParams.msg && searchParams.msg=='sessiontimeout' && <p className='text-red-600'>Your session has expired. Please try again.</p>}
-    </main>
+    <div className="flex flex-col h-full min-h-fit">
+      <main className="p-4 flex flex-col gap-4 items-center container mx-auto max-w-screen-md flex-1 h-full min-h-fit">
+        <h1 className="text-4xl font-bold mb-4">Mood List</h1>
+        <Image src="/lifewire.com.jpg" alt="Mood Meter Photo - copyright: Lifewire.com" width={500} height={400} className="rounded-md" />
+        <p>This application uses Spotify's API to generate a playlist based on your mood and your genre selection, and then gave you the ability to play or save it as a private playlist in your Spotify account. So to do this, Mood List need the necessary permissions on your Spotify's account.</p>  
+        <Link
+          href={`https://accounts.spotify.com/authorize?response_type=code&scope=${scope}&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}
+          className="rounded-md bg-green-700 no-underline hover:text-white transition-all duration-100 hover:scale-105 px-4 py-2 text-xl" 
+        >
+          Connect with Spotify
+        </Link>
+        {searchParams.msg && searchParams.msg=='sessiontimeout' && <p className='text-red-600'>Your session has expired. Please try again.</p>}
+      </main>
+      <footer className="text-sm border-t border-gray-400 py-4 mt-10 text-gray-400 container mx-auto max-w-screen-md text-center">
+        Mood List powered by <a href="https://developer.spotify.com/documentation/web-api/reference/get-recommendations" target="_blank">Spotify API</a>, <a href="https://nextjs.org/" target="_blank">Next.js</a> and <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>.
+        Source code available on <a href="https://github.com/rezahedi/moodlist" target="_blank">GitHub</a>.
+      </footer>
+    </div>
   );
 }

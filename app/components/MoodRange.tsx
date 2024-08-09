@@ -40,7 +40,7 @@ export default function MoodRange({
         {emotions.map((emotion, i) => (
           <div
             key={i}
-            className={`p-1 py-2 text-center capitalize w-28 cursor-pointer border hover:bg-gray-700 ${defaultMood === emotion ? 'bg-gray-700 border-gray-100' : 'bg-gray-600 border-transparent'}`}
+            className={`p-1 py-2 text-center capitalize w-28 cursor-pointer border hover:bg-green-950 ${defaultMood === emotion ? 'bg-green-950 border-green-600 rounded-md' : 'bg-gray-600 border-transparent'}`}
             onClick={()=>handleClick(i)}
           >
             {emotion}

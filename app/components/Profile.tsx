@@ -60,17 +60,17 @@ export default function Profile({
       {loading && <p>Loading...</p>}
       {error && <p className='text-red-600'>{error}</p>}
       {!error && !loading && profile &&
-        <>
-          <a href={profile.href} target="_blank" className="flex flex-col justify-center gap-2">
+        <div className="flex gap-2">
+          <a href={profile.href} target="_blank" className="flex items-center justify-center gap-2">
+            <b>{profile.name}</b>
             <Image
               src={profile.image} alt={profile.name}
-              width={100} height={100}
+              width={40} height={40}
               className="rounded-full"
             />
-            <b>{profile.name}</b>
           </a>
-          <button className='rounded-md bg-orange-700 px-4 py-2' onClick={()=>router.push('/?msg=logout')}>Logout</button>
-        </>
+          <button className='rounded-md bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={()=>router.push('/?msg=logout')}>Logout</button>
+        </div>
       }
     </>
   )
