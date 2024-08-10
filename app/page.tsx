@@ -39,7 +39,7 @@ export default async function Home(
 
     return (
       <div className="flex flex-col">
-        <header className="w-full sticky top-0 dark:bg-black/50 bg-white/50 backdrop-blur-sm p-4">
+        <header className="w-full sticky top-0 dark:bg-black/50 bg-white/50 backdrop-blur-sm p-4 z-10">
           <div className="flex container mx-auto max-w-screen-xl">
             <h1 className="text-4xl font-bold flex-grow">Mood List</h1>
             <Profile token={accessToken} />
