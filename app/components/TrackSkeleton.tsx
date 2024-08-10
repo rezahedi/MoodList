@@ -3,7 +3,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function TrackSkeleton() {
   return (
-    <SkeletonTheme baseColor='rgba(0, 0, 0, 0.06)' highlightColor='rgba(255, 255, 255, 0.049)'>
+    <SkeletonTheme baseColor='rgba(133, 133, 133, 0.104)' highlightColor='rgba(133, 133, 133, 0.049)'>
       <div className='p-4 flex gap-2 items-center'>
         <Skeleton width={100} height={100} className='w-full h-full rounded-md' />
         <div className='flex flex-col flex-grow'>
