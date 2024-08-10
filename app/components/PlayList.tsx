@@ -111,7 +111,7 @@ export default function PlayList({
       {tracks &&
       <>
         <h2 className='font-bold text-2xl text-center'>Generated Playlist</h2>
-        <div className='space-y-2'>
+        <div className='space-y-2 max-w-2xl'>
           {tracks.map(track => 
             <div
               key={track.id}
