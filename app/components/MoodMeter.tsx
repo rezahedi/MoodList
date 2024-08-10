@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import PlayList, { Track } from './PlayList'
 import { useRouter } from "next/navigation"
 import MoodRange from './MoodRange'
+import TrackSkeleton from './TrackSkeleton'
 
 // Got available genre seeds from here:
 // https://developer.spotify.com/documentation/web-api/reference/get-recommendation-genres
@@ -120,7 +121,11 @@ export default function MoodMeter({
         ))}
       </div>
       <button className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={generatePlayList}>Generate</button>
-      {loading && <p>Loading...</p>}
+      {loading && 
+        <div className='flex flex-col gap-1 justify-center w-full'>
+          {Array.from({length:10}).map((_, i) => (<TrackSkeleton key={i} />))}
+        </div>
+      }
       {error && <p className='text-red-600'>{error}</p>}
       {!loading && !error && playList.length>0 && <PlayList name={playlistTitle} tracks={playList} token={token} />}
     </>
