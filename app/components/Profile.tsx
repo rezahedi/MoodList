@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import ProfileSkeleton from "./ProfileSkeleton"
 
 type Profile = {
   name: string,
@@ -57,7 +58,7 @@ export default function Profile({
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <ProfileSkeleton />}
       {error && <p className='text-red-600'>{error}</p>}
       {!error && !loading && profile &&
         <div className="flex gap-2">
