@@ -122,7 +122,7 @@ export default function MoodMeter({
       </div>
       <button className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={generatePlayList}>Generate</button>
       {loading && 
-        <div className='flex flex-col gap-1 justify-center w-full'>
+        <div className='flex flex-col gap-1 justify-center'>
           {Array.from({length:10}).map((_, i) => (<TrackSkeleton key={i} />))}
         </div>
       }
