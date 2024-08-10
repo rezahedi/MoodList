@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from "next/navigation"
@@ -19,11 +19,37 @@ export default function PlayList({
   const [error, setError] = useState<string>('')
   const [resultURL, setResultURL] = useState<string>('')
   const router = useRouter()
+  const [username, setUsername] = useState<string>('')
 
-  // FIXME: Temporary value to test!
-  let username = '12120680111'
+  useEffect(() => {
+    setLoading(true)
+
+    fetch("https://api.spotify.com/v1/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+  
+    }).then(async (res) => {
+      const json = await res.json()
+      setLoading(false)
+
+      if ( res.status===401 )
+        router.push('/?msg=sessiontimeout')
+      if ( res.status!==200 )
+        return setError("Request or access error!")
+      if ( !json.display_name )
+        return setError("Something didn't work!!")
+
+      setUsername(json.id);
+    }).catch(err => {
+      router.push('/?msg=sessiontimeout')
+    })
+  }, [])
 
   const savePlaylist = () => {
+    if(username=='') return;
+
     setLoading(true)
 
     // TODO: Creating a playlist
@@ -109,7 +135,7 @@ export default function PlayList({
           )}
         </div>
         <p>Do you want to save these as a playlist in your Spotify account?</p>
-        <button className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={savePlaylist}>Yes, Save it!</button>
+        <button disabled={loading} className='rounded-md text-white bg-green-700 px-4 py-2 transition-all duration-100 hover:scale-105' onClick={savePlaylist}>Yes, Save it!</button>
         {loading && <p>Saving...</p>}
         {error && <p className='text-red-600'>{error}</p>}
         {!loading && !error && resultURL && <a href={resultURL} target='_blank'>Open Playlist</a>}
