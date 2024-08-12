@@ -2,16 +2,16 @@ import { Dispatch, SetStateAction, useState, useEffect } from 'react'
 
 // Array set copied from https://codepen.io/pandahead33/pen/dyQveJR
 const emotions = [
-  "enraged", "panicked", "stressed", "jittery", "shocked", "surprised", "upbeat", "festive", "exhilarated", "ecstatic",
-  "livid", "furious", "frustrated", "tense", "stunned", "hyper", "cheerful", "motivated", "inspired", "elated",
-  "fuming", "frightened", "angry", "nervous", "restless", "energized", "lively", "enthusiastic", "optimistic", "excited",
-  "anxious", "apprehensive", "worried", "irritated", "annoyed", "pleased", "happy", "focused", "proud", "thrilled",
-  "repulsed", "troubled", "concerned", "uneasy", "peeved", "pleasant", "joyful", "hopeful", "playful", "blissful",
-  "disgusted", "glum", "disappointed", "down", "apathetic", "at ease", "easygoing", "content", "loving", "fulfilled",
-  "pessimistic", "morose", "discouraged", "sad", "bored", "calm", "secure", "satisfied", "grateful", "touched",
-  "alienated", "miserable", "lonely", "disheartened", "tired", "relaxed", "chill", "restful", "blessed", "balanced",
+  "in despair", "hopeless", "desolate", "spent", "drained", "sleepy", "complacent", "tranquil", "cozy", "serene",
   "despondent", "depressed", "sullen", "exhausted", "fatigued", "mellow", "thoughtful", "peaceful", "comfy", "carefree",
-  "in despair", "hopeless", "desolate", "spent", "drained", "sleepy", "complacent", "tranquil", "cozy", "serene"
+  "alienated", "miserable", "lonely", "disheartened", "tired", "relaxed", "chill", "restful", "blessed", "balanced",
+  "pessimistic", "morose", "discouraged", "sad", "bored", "calm", "secure", "satisfied", "grateful", "touched",
+  "disgusted", "glum", "disappointed", "down", "apathetic", "at ease", "easygoing", "content", "loving", "fulfilled",
+  "repulsed", "troubled", "concerned", "uneasy", "peeved", "pleasant", "joyful", "hopeful", "playful", "blissful",
+  "anxious", "apprehensive", "worried", "irritated", "annoyed", "pleased", "happy", "focused", "proud", "thrilled",
+  "fuming", "frightened", "angry", "nervous", "restless", "energized", "lively", "enthusiastic", "optimistic", "excited",
+  "livid", "furious", "frustrated", "tense", "stunned", "hyper", "cheerful", "motivated", "inspired", "elated",
+  "enraged", "panicked", "stressed", "jittery", "shocked", "surprised", "upbeat", "festive", "exhilarated", "ecstatic",
 ]
 
 // Design inspired by https://www.etsy.com/listing/1340253512/mood-meter-digital-poster-printable-mood
