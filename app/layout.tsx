@@ -16,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        <link rel="shortcut icon" href="/2257464_circle_colored_gradient_media_social_icon.png" />
+      </head>
       <body className={`${inter.className} h-full`}>{children}</body>
     </html>
   );
