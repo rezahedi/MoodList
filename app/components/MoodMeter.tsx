@@ -10,6 +10,18 @@ import TrackSkeleton from './TrackSkeleton'
 // https://developer.spotify.com/documentation/web-api/reference/get-recommendation-genres
 const allGenres = ["acoustic", "afrobeat", "alternative", "ambient", "anime", "black-metal", "bluegrass", "blues", "brazil", "british", "children", "chill", "classical", "club", "comedy", "country", "dance", "deep-house", "disco", "disney", "electronic", "folk", "french", "funk", "german", "guitar", "happy", "hard-rock", "hardcore", "heavy-metal", "hip-hop", "holidays", "house", "indian", "iranian", "jazz", "k-pop", "kids", "latin", "latino", "metal", "movies", "new-age", "opera", "party", "piano", "pop", "punk", "punk-rock", "rainy-day", "road-trip", "rock", "rock-n-roll", "romance", "sad", "salsa", "samba", "sleep", "soul", "soundtracks", "spanish", "study", "summer", "swedish", "tango", "techno", "trance", "turkish", "work-out", "world-music"]
 
+type ResponseTrackType = {
+  id: string;
+  uri: string;
+  external_urls: { spotify: string };
+  name: string;
+  album: {
+    name: string;
+    external_urls: { spotify: string };
+    images: { url: string; }[]
+  }
+};
+
 export default function MoodMeter({
   token
 }: {
@@ -54,7 +66,7 @@ export default function MoodMeter({
 
       console.log(json.tracks)
       let tracks : Track[] = []
-      json.tracks.map(track => {
+      json.tracks.map((track: ResponseTrackType) => {
         tracks.push({
           id: track.id,
           uri: track.uri,
