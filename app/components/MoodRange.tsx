@@ -28,9 +28,9 @@ export default function MoodRange({
   const [defaultMood, setDefaultMood] = useState<string>('pleased')
 
   const handleClick = (num: number) => {
-    console.log( 'energy:', (num%10+1)/10, 'valence:', (Math.trunc(num/10)+1)/10 )
-    setEnergy( (num%10+1)/10 )
-    setValence( (Math.trunc(num/10)+1)/10 )
+    console.log( 'energy:', (Math.trunc(num/10)+1)/10, 'valence:', (num%10+1)/10 )
+    setEnergy( (Math.trunc(num/10)+1)/10 )
+    setValence( (num%10+1)/10 )
     setDefaultMood(emotions[num])
   }
 
