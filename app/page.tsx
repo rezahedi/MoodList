@@ -61,7 +61,7 @@ export default async function Home(
       <main className="p-4 flex flex-col gap-4 items-center container mx-auto max-w-screen-md flex-1 h-full min-h-fit">
         <h1 className="text-4xl font-bold mb-4">Mood List</h1>
         <Image src="/lifewire.com.jpg" alt="Mood Meter Photo - copyright: Lifewire.com" width={500} height={400} className="rounded-md" />
-        <p>This application uses Spotify's API to generate a playlist based on your mood and your genre selection, and then gave you the ability to play or save it as a private playlist in your Spotify account. So to do this, Mood List need the necessary permissions on your Spotify's account.</p>  
+        <p>This application uses Spotify&apos;s API to generate a playlist based on your mood and your genre selection, and then gave you the ability to play or save it as a private playlist in your Spotify account. So to do this, Mood List need the necessary permissions on your Spotify&apos;s account.</p>  
         <Link
           href={`https://accounts.spotify.com/authorize?response_type=code&scope=${scope}&client_id=${process.env.SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}`}
           className="rounded-md bg-green-700 no-underline text-white hover:text-white transition-all duration-100 hover:scale-105 px-4 py-2 text-xl" 
